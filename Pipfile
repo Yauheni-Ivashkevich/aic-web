@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 flask-mongoengine = "*"
+flask-restful = "*"
 
 [dev-packages]
 
