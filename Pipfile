@@ -9,6 +9,7 @@ flask-mongoengine = "*"
 flask-restful = "*"
 
 [dev-packages]
+yapf = "*"
 
 [requires]
 python_version = "3.9"
