@@ -9,12 +9,14 @@ class Customer(db.Document):
         required=True, unique=True)  # Ф.И.О. заказчика (ИП или Самозанятый)
     counterparties = db.ListField(
         db.StringField(), required=True)  # список контрагентов заказчика
+    added_by = db.ReferenceField('User') 
 
 
 class User(db.Document):
     # name = db.StringField(required=True)
     email = db.EmailField(required=True, unique=True)
     password = db.StringField(required=True, min_length=6)
+    сustomers = db.ListField(db.ReferenceField('Customer', reverse_delete_rule=db.PULL)) 
 
 
     def hash_password(self):
@@ -23,3 +25,6 @@ class User(db.Document):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+
+User.register_delete_rule(Customer, 'added_by', db.CASCADE)

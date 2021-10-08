@@ -8,6 +8,10 @@ flask = "*"
 flask-mongoengine = "*"
 flask-restful = "*"
 flask-bcrypt = "*"
+dnspython = "*"
+pymongo = "*"
+certifi = "*"
+flask-jwt-extended = "*"
 
 [dev-packages]
 yapf = "*"
