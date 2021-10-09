@@ -12,6 +12,7 @@ dnspython = "*"
 pymongo = "*"
 certifi = "*"
 flask-jwt-extended = "*"
+gunicorn = "*"
 
 [dev-packages]
 yapf = "*"
