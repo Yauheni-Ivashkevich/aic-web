@@ -11,7 +11,7 @@ class CustomersApi(Resource):
         customers = Customer.objects().to_json()
         return Response(customers, mimetype="application/json", status=200)
 
-    @jwt_required 
+    @jwt_required() 
     def post(self):
         user_id = get_jwt_identity()
         body = request.get_json()
@@ -25,7 +25,7 @@ class CustomersApi(Resource):
 
 
 class CustomerApi(Resource):
-    @jwt_required
+    @jwt_required()
     def put(self, id):
         user_id = get_jwt_identity()
         customer = Customer.objects.get(id=id, added_by=user_id)
@@ -33,7 +33,7 @@ class CustomerApi(Resource):
         Customer.objects.get(id=id).update(**body)
         return '', 200
 
-    @jwt_required 
+    @jwt_required() 
     def delete(self, id):
         user_id = get_jwt_identity()
         customer = Customer.objects.get(id=id, added_by=user_id)

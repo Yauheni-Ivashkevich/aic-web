@@ -1,5 +1,12 @@
+from mongoengine.document import EmbeddedDocument
+from mongoengine.fields import StringField
 from .db import db
 from flask_bcrypt import generate_password_hash, check_password_hash
+
+class Counterparties(EmbeddedDocument):
+    name = StringField(required=True) # наименование контрагента
+    adress = StringField(required=True) # юридический адрес контрагента
+    number = StringField(required=True) # УНП контрагента
 
 
 class Customer(db.Document):
@@ -7,8 +14,7 @@ class Customer(db.Document):
         db.StringField(), required=True)  # тип заказчика (ИП или Самозанятый)
     сustomer_name = db.StringField(
         required=True, unique=True)  # Ф.И.О. заказчика (ИП или Самозанятый)
-    counterparties = db.ListField(
-        db.StringField(), required=True)  # список контрагентов заказчика
+    counterparties = db.EmbeddedDocumentListFild(Counterparties)  # список контрагентов заказчика
     added_by = db.ReferenceField('User') 
 
 
